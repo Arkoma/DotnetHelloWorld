@@ -2,8 +2,8 @@ namespace ClassesStructsAndRecords;
 
 public interface IPerson 
 {
-    public string FirstName { get; set; } 
-    public string LastName { get; set; } 
+    public string? FirstName { get; set; } 
+    public string? LastName { get; set; } 
     public int Id { get; set; } 
     public Age Age { get; set; } 
 }
@@ -19,8 +19,8 @@ public class Employee(string firstName, string lastName, int empId = 0 /*this is
         // Id = empId;
     // }
 
-    public string FirstName { get; set; } = firstName;
-    public string LastName { get; set; } = lastName;
+    public string? FirstName { get; set; } = firstName;
+    public string? LastName { get; set; } = lastName;
     public int Id { get; set; } = empId;
     public Age Age { get; set; }
     
@@ -30,7 +30,7 @@ public class Employee(string firstName, string lastName, int empId = 0 /*this is
     public TimeOnly ShiftStartTime { get; set; }
 }  
 
-public class Manager : Employee, IPerson
+public class Manager : Employee
 {
     public Manager(string firstName, string lastName) : base(firstName, lastName) { }
     
@@ -40,14 +40,15 @@ public class Manager : Employee, IPerson
 //structs - value types
 public struct Age
 {
+    public Age () {}
     public DateTime BirthDate { get; set; }
     public int YearsOld { get; set; }
 }
 
 public struct VendorContact : IPerson
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
     public int Id { get; set; }
     public Age Age { get; set; }
 }
@@ -55,8 +56,8 @@ public struct VendorContact : IPerson
 //records (C# 9)
 public record Customer : IPerson
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
     public int Id { get; set; }
     public Age Age { get; set; }
 }

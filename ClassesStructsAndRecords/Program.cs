@@ -11,3 +11,14 @@ Employee employeeWhoIsManager = new Manager("Charlie", "Brown");
 
 Manager manager = new Manager("Charlie", "Brown");
 manager.NumberOfDirectReports = 2;
+
+// This is called object initialization where you can set fields not in the constructor during object creation;
+Manager manager2 = new Manager("Frank", "Sinatra")
+{
+    NumberOfDirectReports = 2,
+    Age = new Age()
+    {
+        BirthDate = new DateTime(1972, 06, 07),
+        YearsOld = 51
+    }
+};
