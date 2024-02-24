@@ -71,7 +71,11 @@ public record PremiereCustomer : Customer
 //record structs (C# 10)
 public record struct Order
 {
-    public int OrderId { get; set; }
+    public void SetOrderId(int orderId)
+    {
+        OrderId = orderId;
+    }
+    public int OrderId { get; private set; }
     public DateOnly OrderDate { get; set; }
 
 }
