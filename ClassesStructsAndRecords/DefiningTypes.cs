@@ -71,11 +71,15 @@ public abstract class Employee : IPerson
     
     //derived can call or hide
     public bool IsActive()
+    // internal bool IsActive() // available in the same assembly
+    // protected bool IsActive() // available in the same class and derived classes but not in the same assembly outside 
+    //                           // of those classes
     {
         Console.WriteLine("Employee Active");
         DateOnly current = DateOnly.FromDateTime(DateTime.Now);
         return current > StartDate && DateTime.Now < EndDate;
     }
+    
 }  
 
 public class ShiftWorker: Employee
@@ -122,6 +126,7 @@ public class Manager : Employee, IPerson
         
         //optional - call base implementation;
         base.Terminate(terminationEffectiveDate);
+        base.IsActive();
     }
 }
 
