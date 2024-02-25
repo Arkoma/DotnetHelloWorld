@@ -1,5 +1,23 @@
 namespace ClassesStructsAndRecords;
 
+//classes - reference types
+public class CPoint
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+} 
+
+//structs - value types
+public struct SPoint
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    public static bool operator == (SPoint a, SPoint b) => a.X == b.X && a.Y == b.Y;
+    public static bool operator != (SPoint a, SPoint b) => a.X != b.X || a.Y != b.Y;
+}
+
+public record RPoint(int X, int Y);
 public interface IPerson 
 {
     public string? FirstName { get; set; } 
