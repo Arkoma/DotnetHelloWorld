@@ -26,8 +26,12 @@ public interface IPerson
     public Age Age { get; set; } 
 }
 
+public class Age
+{
+}
+
 //classes - reference types
-public class Employee : IPerson
+public abstract class Employee : IPerson
 {
     public Employee()
     { }
@@ -45,61 +49,79 @@ public class Employee : IPerson
     public Age Age { get; set; }
     
     //employee properties
-    public int EmployeeId { get; set; }
+    // public int EmployeeId { get; set; }
     public DateOnly StartDate { get; set; }
     public TimeOnly ShiftStartTime { get; set; }
+    
+    //virtual property
+    public virtual DateTime EndDate { get; set; }
+    
+    //abstract property
+    public abstract int EmployeeId { get; }
+    
+    //derived must implement
+    public abstract bool ProcessPayroll();
+
+    //derived can implement
+    public virtual void Terminate(DateTime terminationEffectiveDate)
+    {
+        Console.WriteLine("Employee terminated");
+        EndDate = terminationEffectiveDate;
+    }
+    
+    //derived can call or hide
+    public bool IsActive()
+    {
+        Console.WriteLine("Employee Active");
+        DateOnly current = DateOnly.FromDateTime(DateTime.Now);
+        return current > StartDate && DateTime.Now < EndDate;
+    }
 }  
 
-public class Manager : Employee
+public class ShiftWorker: Employee
 {
-    public Manager(string firstName, string lastName) : base(firstName, lastName) { }
-    
-    public int NumberOfDirectReports { get; set; }
-}
-
-//structs - value types
-public struct Age
-{
-    public Age () {}
-    public DateTime BirthDate { get; set; }
-    public int YearsOld { get; set; }
-}
-
-public struct VendorContact : IPerson
-{
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public int Id { get; set; }
-    public Age Age { get; set; }
-}
-
-//records (C# 9)
-public record Customer : IPerson
-{
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public int Id { get; set; }
-    public Age Age { get; set; }
-}
-
-
-public record PremiereCustomer : Customer
-{
-    public byte CustomerLevel { get; init; }
-}
-
-//record structs (C# 10)
-public record struct Order
-{
-    public void SetOrderId(int orderId)
+    public TimeOnly ShiftStartTime { get; set; }
+    public override int EmployeeId { get => 1; }
+    public override bool ProcessPayroll()
     {
-        OrderId = orderId;
+        Console.WriteLine("Shiftworker payroll");
+        return true;
     }
-    public int OrderId { get; private set; }
-    public DateOnly OrderDate { get; set; }
 
+    public new bool IsActive()
+    {
+        Console.WriteLine("Shiftworker active");
+        return false;
+    }
 }
-public record struct RecurringOrder
+
+public class Manager : Employee, IPerson
 {
+    public int NumberOfDirectReports { get; set; }
+    public override int EmployeeId
+    {
+        get => new Random().Next(1, 100);
+    }
 
+    public override bool ProcessPayroll()
+    {
+        Console.WriteLine("Manager Payroll");
+        return true;
+    }
+
+    // public override void Terminate(DateTime terminationEffectiveDate)
+    public new void Terminate(DateTime terminationEffectiveDate)
+    {
+       //if override is used it is called whether typed as
+       //base clase or derived class
+       //if new base method is called if typed as base 
+       //class or derived class if typed as derived
+        
+        //perform manager specific termination steps
+        Console.WriteLine("Manager terminated");
+        
+        //optional - call base implementation;
+        base.Terminate(terminationEffectiveDate);
+    }
 }
+

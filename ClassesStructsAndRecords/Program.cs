@@ -2,52 +2,32 @@
 
 using ClassesStructsAndRecords;
 
-Classes();
-Structs();
-Records();
+// Employee sw = new ShiftWorker
+// ShiftWorker sw = new ShiftWorker
+// {
+//     FirstName = "staff",
+//     LastName = "one",
+//     StartDate = new DateOnly(2014, 2, 17),
+//     ShiftStartTime = new TimeOnly(8, 30)
+// };
+//
+// Console.WriteLine("==========Shift Worker==========");
+// bool payrollProcessed = sw.ProcessPayroll();
+// sw.Terminate(DateTime.Now);
+// bool active = sw.IsActive();// runs Employee version of method if 
+//                             // if typed as Employee
+//                             // runs ShiftWorker version
+//                             // if typed as ShiftWorker
+// Console.WriteLine();
 
-static void Classes()
+// Employee mgr = new Manager
+Manager mgr = new Manager
 {
-    Console.WriteLine("==========Classes==========");
-    CPoint p1 = new CPoint { X = 7, Y = 3 };
-    CPoint p2 = p1;
-    p2.X = 10;
-
-    Console.WriteLine($"P1 = P2 : {p1 == p2}"); // true
-
-    CPoint p3 = new CPoint { X = 7, Y = 3 };
-
-    Console.WriteLine($"P1 = P3 : {p1 == p3}"); // false
-    Console.WriteLine();
-    // for classes objects are only equal if they reference
-    // the same object in memory even if the values
-    // in the two objects are the same.
-}
-
-static void Structs()
-{
-    Console.WriteLine("==========Structs==========");
-    SPoint p1 = new SPoint { X = 7, Y = 3 };
-    SPoint p2 = p1;
-
-    Console.WriteLine($"P1 = P2 : {p1 == p2}"); // true
-
-    SPoint p3 = new SPoint { X = 7, Y = 3 };
-
-    Console.WriteLine($"P1 = P3 : {p1 == p3}"); // true
-    Console.WriteLine();
-}
-
-static void Records()
-{
-    Console.WriteLine("==========Records==========");
-    RPoint p1 = new RPoint(7, 3);
-    RPoint p2 = p1;
-
-    Console.WriteLine($"P1 = P2 : {p1 == p2}"); // true
-
-    RPoint p3 = new RPoint(7, 3);
-
-    Console.WriteLine($"P1 = P3 : {p1 == p3}"); // true
-    Console.WriteLine();
-}
+    FirstName = "manager",
+    LastName = "one",
+    NumberOfDirectReports = 7
+};
+Console.WriteLine("==========Manager==========");
+bool mgrPayrollProcessed = mgr.ProcessPayroll();
+mgr.Terminate(DateTime.Now); // overridden so calls derived
+bool mgrActive = mgr.IsActive();
