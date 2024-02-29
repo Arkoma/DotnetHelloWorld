@@ -3,6 +3,12 @@
 
 using ClassesStructsAndRecords;
 
+var x = 10;
+var y = "some string";
+
+// x = 10.0; cannot do this because the implicit
+// typing is static
+
 Employee e = new ShiftWorker();
 e.FirstName = "Hello";
 // this has the error 'Cannot resolve symbol 'ShiftStartTime''
