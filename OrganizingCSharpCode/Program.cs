@@ -9,11 +9,13 @@ var y = "some string";
 // x = 10.0; cannot do this because the implicit
 // typing is static
 
-Employee e = new ShiftWorker();
-e.FirstName = "Hello";
-// this has the error 'Cannot resolve symbol 'ShiftStartTime''
-// e.ShiftStartTime = new TimeOnly(8, 30);
-// but if I cast it as a ShiftWorker then the compiler is happy
-((ShiftWorker)e).ShiftStartTime = new TimeOnly(8, 30);
+var e = new
+{
+    FirstName = "Aaron", LastName = "Burk",
+    Kids = new [] { "son1", "son2" }
+};
 
+Console.WriteLine();
 Console.WriteLine(e.FirstName);
+Console.WriteLine();
+Console.WriteLine(e.Kids[1]);
