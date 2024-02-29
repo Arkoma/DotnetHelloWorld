@@ -23,7 +23,7 @@ public interface IPerson
     public string? FirstName { get; set; } 
     public string? LastName { get; set; } 
     public int Id { get; set; } 
-    public Age Age { get; set; } 
+    public Age? Age { get; set; } 
 }
 
 public class Age
@@ -33,25 +33,14 @@ public class Age
 //classes - reference types
 public abstract class Employee : IPerson
 {
-    public Employee()
-    { }
-
-    public Employee(string firstName, string lastName, int empId = 0)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        Id = empId;
-    }
-
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public int Id { get; set; }
-    public Age Age { get; set; }
+    public Age? Age { get; set; }
     
     //employee properties
     // public int EmployeeId { get; set; }
     public DateOnly StartDate { get; set; }
-    public TimeOnly ShiftStartTime { get; set; }
     
     //virtual property
     public virtual DateTime EndDate { get; set; }
