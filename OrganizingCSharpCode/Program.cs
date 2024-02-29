@@ -6,16 +6,17 @@ using ClassesStructsAndRecords;
 var x = 10;
 var y = "some string";
 
-// x = 10.0; cannot do this because the implicit
-// typing is static
+dynamic d = new ShiftWorker() {FirstName = "Dynamic", LastName = "Worker"};
 
-var e = new
-{
-    FirstName = "Aaron", LastName = "Burk",
-    Kids = new [] { "son1", "son2" }
-};
+string kid1 = d.Kids[1];
+// this compiles
 
-Console.WriteLine();
-Console.WriteLine(e.FirstName);
-Console.WriteLine();
-Console.WriteLine(e.Kids[1]);
+// but it throws an exception 
+/*
+   Unhandled exception. Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'ClassesStructsAndRecords.ShiftWorker' 
+   does not contain a definition for 'Kids'
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at Program.<Main>$(String[] args) in /Users/aburk/RiderProjects/DotnetLearning/OrganizingCSharpCode/
+   Program.cs:line 11
+ */
