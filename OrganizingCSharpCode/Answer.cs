@@ -14,6 +14,8 @@ public class Answer
     public static int GetAnswer(object answerGenerator, int number) {
         // Your code goes here.
 
-        return 0;
+        dynamic generator = answerGenerator;
+
+        return generator.GenerateAnswer(number);
     } 
 }
