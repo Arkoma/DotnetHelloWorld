@@ -7,23 +7,19 @@ int? age = null; // question mark makes it nullable
 Nullable<int> age2 = null; // alternative nullable syntax
 
 age = 5;
-age ??= 12; // if age is null make it equal to 12
-//definiteInt = age; // doing this without casting it to int? results in compilation error stating 
-                   //   Program.cs(11, 15): [CS0266] Cannot implicitly convert type 'int?' to 'int'.
-                   //   An explicit conversion exists (are you missing a cast?)
+age ??= 12; 
+definiteInt = age ?? 17;
+Console.WriteLine($"Age is: {definiteInt}");
+Console.WriteLine(PadAndTrim(input, 15, '0'));
+/**
+ * Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+   at Program.<<Main>$>g__PadAndTrim|0_0(String input, Int32 length, Char padChar) in /Users/aburk/RiderProjects/DotnetLearning/EnumsAndNullables/Program.cs:line 17
+   at Program.<Main>$(String[] args) in /Users/aburk/RiderProjects/DotnetLearning/EnumsAndNullables/Program.cs:line 13
 
-definiteInt = age ?? 17; // if age is null make definateInt 17 otherwise asign it the value of age
-// equivalent of
-definiteInt = age != null ? age.Value : 17;
-Console.WriteLine($"{definiteInt}");
+ */
 
-// if (definiteInt != null) // compilation error unassigned local variable
-if (age != null) // compilation error unassigned local variable
+static string PadAndTrim(string input, int length, char padChar)    
 {
-    Console.WriteLine($"String is: {age}");
-}
-
-if (age.HasValue)
-{
-    Console.WriteLine($"Age's value: {age.Value}");
+    // return input.Trim().PadLeft(length, padChar); //throws exception when input is null
+    return input?.Trim()?.PadLeft(length, padChar); // still returns null but no longer throws exception;
 }
