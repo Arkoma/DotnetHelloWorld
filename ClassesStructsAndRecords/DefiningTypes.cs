@@ -1,3 +1,5 @@
+using EnumsAndNullables;
+
 namespace ClassesStructsAndRecords;
 
 //classes - reference types
@@ -73,6 +75,7 @@ public abstract class Employee : IPerson
 
 public class ShiftWorker: Employee
 {
+    public ShiftDays DaysAvailable { get; set; }
     public TimeOnly ShiftStartTime { get; set; }
     public override int EmployeeId { get => 1; }
     public override bool ProcessPayroll()
