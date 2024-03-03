@@ -1,6 +1,7 @@
 namespace EnumsAndNullables;
 
-public enum ShiftDays
+[Flags]
+public enum ShiftDays: short
 {
     Sunday = 1,
     Monday = 2,
@@ -9,7 +10,10 @@ public enum ShiftDays
     Wednesday = 8,
     Thursday = 16,
     Friday = 32,
-    Saturday = 64
+    Weekdays = 63,
+    Saturday = 64,
+    Weekend = 65
+    
 }
 
 
