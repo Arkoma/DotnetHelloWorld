@@ -16,3 +16,8 @@ if (age != null) // compilation error unassigned local variable
 {
     Console.WriteLine($"String is: {age}");
 }
+
+if (age.HasValue)
+{
+    Console.WriteLine($"Age's value: {age.Value}");
+}
