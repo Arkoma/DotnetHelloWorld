@@ -15,12 +15,11 @@ static ShiftDays GetShiftDays(DayOfWeek day) => day switch
      DayOfWeek.Thursday => ShiftDays.Thursday,
      DayOfWeek.Friday => ShiftDays.Friday,
      DayOfWeek.Saturday => ShiftDays.Saturday,
-     DayOfWeek.Sunday => ShiftDays.Sunday
+     DayOfWeek.Sunday => ShiftDays.Sunday,
+     _ => throw new ArgumentException("Invalid day of the week supplied")
 };
 
-{
 
-}
 
 static string PadAndTrim([AllowNull]string input, int length, char padChar)    
 {
