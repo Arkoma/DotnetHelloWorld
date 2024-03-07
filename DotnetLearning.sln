@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganizingCSharpCode", "Org
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumsAndNullables", "EnumsAndNullables\EnumsAndNullables.csproj", "{F06933E1-CE1C-4ED9-8756-FBF0DAB0C175}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternsInControlFlow", "PatternsInControlFlow\PatternsInControlFlow.csproj", "{3189E224-01DA-404C-AA63-97F1EE0BDC2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{F06933E1-CE1C-4ED9-8756-FBF0DAB0C175}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F06933E1-CE1C-4ED9-8756-FBF0DAB0C175}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F06933E1-CE1C-4ED9-8756-FBF0DAB0C175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3189E224-01DA-404C-AA63-97F1EE0BDC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3189E224-01DA-404C-AA63-97F1EE0BDC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3189E224-01DA-404C-AA63-97F1EE0BDC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3189E224-01DA-404C-AA63-97F1EE0BDC2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
