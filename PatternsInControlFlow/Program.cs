@@ -5,8 +5,8 @@ using EnumsAndNullables;
 
 string input = "hello world";
 
-// Console.WriteLine(PadAndTrim(input, 15, '0'));
-// Console.WriteLine(GetShiftDays(DateTime.Now.DayOfWeek));
+Console.WriteLine(PadAndTrim(input, 15, 'z'));
+Console.WriteLine(GetShiftDays(DateTime.Now.DayOfWeek));
 static ShiftDays GetShiftDays(DayOfWeek day) => day switch
 {
      DayOfWeek.Monday => ShiftDays.Monday,
@@ -29,11 +29,9 @@ static string PadAndTrim([AllowNull]string input, int length, char padChar)
      {
           switch (padChar)
           {
-               case ' ': // two cases in a row are like a logical or
-               case '|':
+               case (>= 'a' and <= 'z') or (>= 'A' and <= 'Z'):
                     return input.Trim().PadLeft(length, padChar);
-               case '0':
-               case '9':
+               case >= '0' and <= '9':
                     return input.Trim().PadRight(length, padChar);
                default:
                     Console.WriteLine("No match found for pad character");
@@ -53,14 +51,21 @@ Console.WriteLine(GetPersonDetails(sw));
 Console.WriteLine(GetPersonDetails(mgr));
 static string GetPersonDetails(IPerson p)
 {
+     var result = p switch
+     {
+          ShiftWorker swv => $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ",
+          Manager mgv => $"{mgv.FirstName} {mgv.LastName}, Reports: {mgv.NumberOfDirectReports}",
+          _ => string.Empty
+     };
+     return result;
      // ShiftWorker? swv = p as ShiftWorker;
      // if (swv is not null)
-     if(p is ShiftWorker swv) // this does the null check, type check, and var assignment all at once
-     {
-          return $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ";
-     } else if (p is Manager mgv)
-     {
-          return $"{mgv.FirstName} {mgv.LastName}, Reports: {mgv.NumberOfDirectReports}";
-     }
-     return String.Empty;
+     // if(p is ShiftWorker swv) // this does the null check, type check, and var assignment all at once
+     // {
+          // return $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ";
+     // } else if (p is Manager mgv)
+     // {
+          // return $"{mgv.FirstName} {mgv.LastName}, Reports: {mgv.NumberOfDirectReports}";
+     // }
+     // return String.Empty;
 }
