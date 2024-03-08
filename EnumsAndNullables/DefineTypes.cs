@@ -86,3 +86,35 @@ public interface IPerson
 public class Age
 {
 }
+
+public class Manager : Employee, IPerson
+{
+    public int NumberOfDirectReports { get; set; }
+    public override int EmployeeId
+    {
+        get => new Random().Next(1, 100);
+    }
+
+    public override bool ProcessPayroll()
+    {
+        Console.WriteLine("Manager Payroll");
+        return true;
+    }
+
+    // public override void Terminate(DateTime terminationEffectiveDate)
+    public new void Terminate(DateTime terminationEffectiveDate)
+    {
+        //if override is used it is called whether typed as
+        //base clase or derived class
+        //if new base method is called if typed as base 
+        //class or derived class if typed as derived
+        
+        //perform manager specific termination steps
+        Console.WriteLine("Manager terminated");
+        
+        //optional - call base implementation;
+        base.Terminate(terminationEffectiveDate);
+        base.IsActive();
+    }
+}
+

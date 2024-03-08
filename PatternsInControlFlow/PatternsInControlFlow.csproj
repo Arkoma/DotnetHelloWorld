@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ClassesStructsAndRecords\ClassesStructsAndRecords.csproj" />
       <ProjectReference Include="..\EnumsAndNullables\EnumsAndNullables.csproj" />
     </ItemGroup>
 

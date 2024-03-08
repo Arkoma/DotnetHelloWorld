@@ -6,7 +6,7 @@ using EnumsAndNullables;
 string input = "hello world";
 
 // Console.WriteLine(PadAndTrim(input, 15, '0'));
-Console.WriteLine(GetShiftDays(DateTime.Now.DayOfWeek));
+// Console.WriteLine(GetShiftDays(DateTime.Now.DayOfWeek));
 static ShiftDays GetShiftDays(DayOfWeek day) => day switch
 {
      DayOfWeek.Monday => ShiftDays.Monday,
@@ -18,8 +18,6 @@ static ShiftDays GetShiftDays(DayOfWeek day) => day switch
      DayOfWeek.Sunday => ShiftDays.Sunday,
      _ => throw new ArgumentException("Invalid day of the week supplied")
 };
-
-
 
 static string PadAndTrim([AllowNull]string input, int length, char padChar)    
 {
@@ -47,4 +45,22 @@ static string PadAndTrim([AllowNull]string input, int length, char padChar)
      {
           throw new ArgumentException("Input is longer than requested length");
      }
+}
+
+IPerson sw = new ShiftWorker { FirstName = "Shift", LastName = "Worker", StartDate = new DateOnly(2024, 2, 14)};
+IPerson mgr = new Manager { FirstName = "Manager", LastName = "Worker", NumberOfDirectReports = 1000 };
+Console.WriteLine(GetPersonDetails(sw));
+Console.WriteLine(GetPersonDetails(mgr));
+static string GetPersonDetails(IPerson p)
+{
+     // ShiftWorker? swv = p as ShiftWorker;
+     // if (swv is not null)
+     if(p is ShiftWorker swv) // this does the null check, type check, and var assignment all at once
+     {
+          return $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ";
+     } else if (p is Manager mgv)
+     {
+          return $"{mgv.FirstName} {mgv.LastName}, Reports: {mgv.NumberOfDirectReports}";
+     }
+     return String.Empty;
 }
