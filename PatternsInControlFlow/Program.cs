@@ -37,8 +37,10 @@ static string PadAndTrim([AllowNull]string input, int length, char padChar)
      {
           switch (padChar)
           {
-               case (>= 'a' and <= 'z') or (>= 'A' and <= 'Z'):
+               case (>= 'a' and <= 'z') or (>= 'A' and <= 'Z') when padChar != 'x':
                     return input.Trim().PadLeft(length, padChar);
+               case (>= 'a' and <= 'z') or (>= 'A' and <= 'Z') when padChar == 'x':
+                    return string.Empty.PadLeft(length, '_');
                case >= '0' and <= '9':
                     return input.Trim().PadRight(length, padChar);
                default:
@@ -53,7 +55,7 @@ static string PadAndTrim([AllowNull]string input, int length, char padChar)
      }
 }
 
-IPerson sw = new ShiftWorker { FirstName = "Shift", LastName = "Worker", StartDate = new DateOnly(2024, 2, 14)};
+IPerson sw = new ShiftWorker { FirstName = "Shift", LastName = "Worker", StartDate = new DateOnly(2022, 2, 14)};
 IPerson mgr = new Manager { FirstName = "Manager", LastName = "Worker", NumberOfDirectReports = 1000 };
 Console.WriteLine(GetPersonDetails(sw));
 Console.WriteLine(GetPersonDetails(mgr));
@@ -61,7 +63,10 @@ static string GetPersonDetails(IPerson p)
 {
      var result = p switch
      {
-          ShiftWorker swv => $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ",
+          // ShiftWorker swv when swv.StartDate.Year > 2020 => $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ",
+          // ShiftWorker swv when swv.StartDate.Year <= 2020 => "Older employee",
+          ShiftWorker { StartDate.Year: > 2020 } swv => $"{swv.FirstName} {swv.LastName}: {swv.StartDate} ",
+          ShiftWorker { StartDate.Year: <= 2020 } => "Older employee",
           Manager mgv => $"{mgv.FirstName} {mgv.LastName}, Reports: {mgv.NumberOfDirectReports}",
           _ => string.Empty
      };
